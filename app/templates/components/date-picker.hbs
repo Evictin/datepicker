@@ -1,0 +1,25 @@
+{{log (concat 'value=' value)}}
+{{#if (has-native-date-input)}}
+  {{moment-format (now) 'MM-DD-YYYY'}}
+  {{input type='datetime-local' value=(moment-format value 'YYYY-MM-DDTHH:mm')}}
+{{else}}
+  {{input id=(concat 'internal-' id) type="(if (has-native-date-input) 'datetime' 'text')" value=(moment-format value 'MM/DD/YYYY')}}
+  <div>
+    <select id={{concat id '-hour'}} onchange={{action "changeHour" value="target.value"}}>
+      {{#each hours as |hour|}}
+        <option>{{hour}}</option>
+      {{/each}}
+    </select>
+    <select id={{concat id '-minute'}} onchange={{action "changeMinute" value="target.value"}}>
+      {{#each minutes as |minute|}}
+        <option>{{minute}}</option>
+      {{/each}}
+    </select>
+    <select id={{concat id '-ampm'}} onchange={{action "changeAmpm" value="target.value"}}>
+      {{#each ampms as |am|}}
+        <option>{{am}}</option>
+      {{/each}}
+    </select>
+    {{time}}
+  </div>
+{{/if}}

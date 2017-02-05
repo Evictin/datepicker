@@ -1,5 +1,6 @@
 {
   "name": "datepicker",
   "dependencies": {
+    "jquery-ui": "1.11.4"
   }
 }
