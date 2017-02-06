@@ -3,7 +3,7 @@
   {{moment-format (now) 'MM-DD-YYYY'}}
   {{input type='datetime-local' value=(moment-format value 'YYYY-MM-DDTHH:mm')}}
 {{else}}
-  {{input id=(concat 'internal-' id) type="(if (has-native-date-input) 'datetime' 'text')" value=(moment-format value 'MM/DD/YYYY')}}
+  {{input id=(concat 'internal-' id) type="text" value=(moment-format value 'MM/DD/YYYY') placeholder='MM/DD/YYYY'}}
   <div>
     <select id={{concat id '-hour'}} onchange={{action "changeHour" value="target.value"}}>
       {{#each hours as |hour|}}
@@ -20,6 +20,5 @@
         <option>{{am}}</option>
       {{/each}}
     </select>
-    {{time}}
   </div>
 {{/if}}
